@@ -19,11 +19,14 @@ using namespace mlir::pto;
 namespace mlir {
 namespace pto {
 
+void populateWSEPatterns(RewritePatternSet &, TypeConverter &, MLIRContext *);
+
 // Aggregates the per-op-family pattern registrations for this domain.
 static void populateSyncCommFamilyPatterns(RewritePatternSet &patterns,
                                       TypeConverter &typeConverter, MLIRContext *ctx,
                                       PTOArch targetArch) {
   populateSyncCommBlockIdxPatterns(patterns, typeConverter, ctx);
+  populateWSEPatterns(patterns, typeConverter, ctx);
   populateSyncCommBufPoolPatterns(patterns, typeConverter, ctx);
   populateSyncCommFuncCallPatterns(patterns, typeConverter, ctx);
   populateSyncCommSyncPatterns(patterns, typeConverter, ctx, targetArch);

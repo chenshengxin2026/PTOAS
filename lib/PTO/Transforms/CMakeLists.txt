@@ -228,6 +228,7 @@ add_mlir_dialect_library(PTOTransforms
   PTOToEmitC/SyncComm/Sync.cpp
   PTOToEmitC/SyncComm/SyncCommSupport.cpp
   PTOToEmitC/SyncComm/SyncCommPatterns.cpp
+  PTOToEmitC/SyncComm/WSE.cpp
   PTOToEmitC/LoadStore/TLoad.cpp
   PTOToEmitC/LoadStore/TMatmul.cpp
   PTOToEmitC/LoadStore/TStore.cpp

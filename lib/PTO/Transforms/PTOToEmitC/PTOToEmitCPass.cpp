@@ -694,6 +694,7 @@ struct EmitPTOManualPass
     bool tRandom = false;
     bool globalTensorData = false;
     bool bitcast = false;
+    bool wse = false;
   };
 
   static HelperFlags collectHelperFlags(ModuleOp mop) {
@@ -701,6 +702,8 @@ struct EmitPTOManualPass
     mop.walk([&](Operation *op) {
       if (isa<mlir::pto::DeclareEventIdArrayOp>(op))
         flags.eventIdArray = true;
+      if (isa<mlir::pto::TCalendarOp, mlir::pto::WSELocalOp>(op))
+        flags.wse = true;
       if (isa<mlir::pto::TRandomOp>(op))
         flags.tRandom = true;
       if (auto cmo = dyn_cast<mlir::pto::CmoCacheInvalidOp>(op)) {
@@ -734,6 +737,8 @@ struct EmitPTOManualPass
     Location loc = mop->getLoc();
     builder.create<emitc::IncludeOp>(
         loc, "pto/pto-inst.hpp", /*is_standard_include=*/false);
+    if (flags.wse)
+      builder.create<emitc::IncludeOp>(loc, "pto/wse/a3.hpp", /*is_standard_include=*/false);
     builder.create<emitc::VerbatimOp>(
         loc, builder.getStringAttr("using namespace pto;"));
 

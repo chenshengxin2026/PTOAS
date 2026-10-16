@@ -1,5 +1,8 @@
 # ptoas (PTO Assembler & Optimizer)
 
+实验性 [WSE Calendar A3 仿真](docs/wse-mock/README.md)：原生 WSE operations、
+verifier、EmitC lowering、配套仓库与 FFN 验证方法。
+
 ## 1. 项目简介 (Introduction)
 
 **ptoas** (`ptoas`) 是一个基于 **LLVM/MLIR LLVM19 VPTO 分支 (`vpto-dev/llvm-project:feature-vpto`)** 框架构建的专用编译器工具链，专为 **PTO Bytecode** (Programming Tiling Operator Bytecode) 设计。

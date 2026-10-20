@@ -6817,4 +6817,6 @@ def TPrintOp: PTO_TOp<"tprint", [
   }];
  }
 
+include "PTO/IR/WSEOps.td"
+
 #endif // MLIR_DIALECT_PTO_IR_PTOOPS

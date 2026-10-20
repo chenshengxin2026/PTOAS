@@ -36,6 +36,7 @@
 #include "PTOCore/PTORegionAndViewVerification.cpp"
 #include "PTOCore/PTOPointerAndStructVerification.cpp"
 #include "PTOCore/PTODialectAndEntryVerification.cpp"
+#include "PTOCore/WSEVerification.cpp"
 
 // Allocation, memory movement, synchronization, and shared tile checks.
 #include "PTOTile/PTOTileAllocationAndLoad.cpp"

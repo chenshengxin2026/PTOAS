@@ -1,5 +1,7 @@
 # ptoas (PTO Assembler & Optimizer)
 
+[WSE Calendar A3 下沉](docs/wse-calendar.md)：`wse-sim-1026` 分支的指令校验、代码生成和四仓 FFN 复现入口。
+
 ## 1. 项目简介 (Introduction)
 
 **ptoas** (`ptoas`) 是一个基于 **LLVM/MLIR LLVM19 VPTO 分支 (`vpto-dev/llvm-project:feature-vpto`)** 框架构建的专用编译器工具链，专为 **PTO Bytecode** (Programming Tiling Operator Bytecode) 设计。

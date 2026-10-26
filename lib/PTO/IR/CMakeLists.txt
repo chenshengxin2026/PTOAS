@@ -16,6 +16,7 @@ add_mlir_dialect_library(PTOIR
   ENABLE_AGGREGATION
 
   PTO.cpp
+  WseCalendar.cpp
   VPTO.cpp
   VPTOAddressSemantics.cpp
   PTOGenericOps.cpp

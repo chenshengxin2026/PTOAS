@@ -80,6 +80,16 @@ class PTO_Op<string mnemonic, list<Trait> traits = []>
 
 include "PTO/IR/PTOGenericOps.td"
 
+// Completion is synchronous. Unknown global memory effects preserve communication
+// state even when the receive tile has no local consumer.
+def TCalendarOp : PTO_Op<"tcalendar", [MemoryEffects<[MemRead, MemWrite]>]> {
+  let summary = "Static L1 Calendar AllGather with launch-owned deployment context";
+  let arguments = (ins I64:$context, TileBufType:$src, TileBufType:$dst,
+                       I32:$expected, I64Attr:$axis, DenseI64ArrayAttr:$members);
+  let hasVerifier = 1;
+}
+
+
 include "PTO/IR/VMIOps.td"
 include "PTO/IR/VPTOOps.td"
 include "PTO/IR/VPTOUbOps.td"

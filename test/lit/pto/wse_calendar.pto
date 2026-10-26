@@ -1,0 +1,24 @@
+// Copyright (c) 2026 Huawei Technologies Co., Ltd.
+// Licensed under the CANN Open Software License Agreement Version 2.0.
+// RUN: ptoas --pto-arch=a3 --pto-level=level3 %s 2>&1 | FileCheck %s
+// CHECK: #include "pto/wse/calendar.hpp"
+// CHECK: pto::wse::RunCalendar<1, 9, 2>
+
+!send = !pto.tile_buf<loc=mat, dtype=f16, rows=2, cols=16, v_row=?, v_col=?, blayout=row_major, slayout=none_box, fractal=512, pad=0>
+!recv = !pto.tile_buf<loc=mat, dtype=f16, rows=2, cols=32, v_row=2, v_col=32, blayout=row_major, slayout=none_box, fractal=512, pad=0>
+
+module {
+  func.func @calendar(%context: i64) attributes {pto.kernel_kind = #pto.kernel_kind<cube>} {
+    %a0 = arith.constant 0 : i64
+    %a1 = arith.constant 4096 : i64
+    %rows = arith.constant 2 : index
+    %cols = arith.constant 16 : index
+    %expected = arith.constant 64 : i32
+    %send = pto.alloc_tile addr = %a0 valid_row = %rows valid_col = %cols : !send
+    %recv = pto.alloc_tile addr = %a1 : !recv
+    "pto.tcalendar"(%context, %send, %recv, %expected)
+        {axis = 1 : i64, members = array<i64: 9, 2>}
+        : (i64, !send, !recv, i32) -> ()
+    return
+  }
+}

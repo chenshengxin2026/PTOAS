@@ -222,6 +222,7 @@ add_mlir_dialect_library(PTOTransforms
   PTOToEmitC/Tile/TileMisc.cpp
   PTOToEmitC/Tile/TileSupport.cpp
   PTOToEmitC/Tile/TilePatterns.cpp
+  PTOToEmitC/SyncComm/WseCalendar.cpp
   PTOToEmitC/SyncComm/BlockIdx.cpp
   PTOToEmitC/SyncComm/BufPool.cpp
   PTOToEmitC/SyncComm/FuncCall.cpp

@@ -23,6 +23,7 @@ bool tryExtractSyncTokensFromNamedAttrs(Operation *op, StringRef srcName, String
 bool tryExtractSyncTokensFromArrayAttr(Operation *op, StringRef attrName, std::string &srcTok, std::string &dstTok, std::string &evtTok);
 bool tryExtractFallbackSyncTokens(Operation *op, std::string &srcTok, std::string &dstTok, std::string &evtTok);
 
+void populateWseCalendarPatterns(RewritePatternSet&, TypeConverter&, MLIRContext*);
 void populateSyncCommBlockIdxPatterns(RewritePatternSet &patterns,
                         TypeConverter &typeConverter, MLIRContext *ctx);
 void populateSyncCommBufPoolPatterns(RewritePatternSet &patterns,

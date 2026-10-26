@@ -646,6 +646,15 @@ struct EmitPTOManualPass
 
   LogicalResult validateAndAnnotate(ModuleOp mop) const
   {
+      bool invalidCalendarTarget = false;
+      mop.walk([&](TCalendarOp op) {
+          if (targetArch != PTOArch::A3) {
+              op.emitError("Calendar CCE mock currently requires --pto-arch=a3");
+              invalidCalendarTarget = true;
+          }
+      });
+      if (invalidCalendarTarget)
+          return failure();
       if (failed(pto::validatePTOEntryFunctions(mop))) {
           return failure();
       }
@@ -734,6 +743,10 @@ struct EmitPTOManualPass
     Location loc = mop->getLoc();
     builder.create<emitc::IncludeOp>(
         loc, "pto/pto-inst.hpp", /*is_standard_include=*/false);
+    bool hasCalendar = false;
+    mop.walk([&](TCalendarOp) { hasCalendar = true; });
+    if (hasCalendar)
+        builder.create<emitc::IncludeOp>(loc, "pto/wse/calendar.hpp", false);
     builder.create<emitc::VerbatimOp>(
         loc, builder.getStringAttr("using namespace pto;"));
 

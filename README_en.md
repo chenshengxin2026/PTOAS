@@ -1,5 +1,7 @@
 # ptoas (PTO Assembler & Optimizer)
 
+[WSE Calendar on A3](docs/wse-calendar.md): verification, lowering and the four-repository FFN reproduction guide for `wse-sim-1026`.
+
 ## 1. Introduction
 
 **ptoas** is a specialized compiler toolchain built on top of the **LLVM19 VPTO branch (`vpto-dev/llvm-project:feature-vpto`)**, designed specifically for **PTO Bytecode** (Programming Tiling Operator Bytecode).

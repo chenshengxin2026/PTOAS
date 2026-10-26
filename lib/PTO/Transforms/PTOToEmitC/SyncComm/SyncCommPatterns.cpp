@@ -23,10 +23,11 @@ namespace pto {
 static void populateSyncCommFamilyPatterns(RewritePatternSet &patterns,
                                       TypeConverter &typeConverter, MLIRContext *ctx,
                                       PTOArch targetArch) {
-  populateSyncCommBlockIdxPatterns(patterns, typeConverter, ctx);
-  populateSyncCommBufPoolPatterns(patterns, typeConverter, ctx);
-  populateSyncCommFuncCallPatterns(patterns, typeConverter, ctx);
-  populateSyncCommSyncPatterns(patterns, typeConverter, ctx, targetArch);
+    populateWseCalendarPatterns(patterns, typeConverter, ctx);
+    populateSyncCommBlockIdxPatterns(patterns, typeConverter, ctx);
+    populateSyncCommBufPoolPatterns(patterns, typeConverter, ctx);
+    populateSyncCommFuncCallPatterns(patterns, typeConverter, ctx);
+    populateSyncCommSyncPatterns(patterns, typeConverter, ctx, targetArch);
 }
 
 void populateSyncCommPatterns(RewritePatternSet &patterns,
